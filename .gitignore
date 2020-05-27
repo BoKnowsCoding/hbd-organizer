@@ -123,3 +123,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# test files
+*.cbr
+*.cbz
+*.cb7
+*.pdf
+
