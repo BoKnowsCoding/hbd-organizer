@@ -130,3 +130,4 @@ dmypy.json
 *.cb7
 *.pdf
 
+.vscode/settings.json
