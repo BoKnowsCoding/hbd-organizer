@@ -129,5 +129,5 @@ dmypy.json
 *.cbz
 *.cb7
 *.pdf
-
 .vscode/settings.json
+hbd-cookies.txt
