@@ -93,10 +93,10 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
 
     bestTarget = target+"/"+itemName+bestExtension
     if guaranteed:
-        copiedDict.update({itemName:bestPath})
         os.makedirs(target, exist_ok=True)
         shutil.copyfile(bestPath,bestTarget)
-        print(bestPath,"\n-->",bestTarget,"\n")
+        copiedDict.update({itemName:bestPath})
+        print(bestPath+"\n-->"+bestTarget+"\n")
 
 
 if __name__ == "__main__":
