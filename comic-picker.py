@@ -1,8 +1,7 @@
 """
  Designed to be used in conjunction with xtream1101/humblebundle-downloader.
  Takes the download directory of that script, then copies the best quality 
- comic book files to a chosen directory. This does not prevent lower quality
- 
+ comic book files to a chosen directory.
 
  Renaming files after they are copied will not result in files being copied
  again, as this script keeps a JSON in the given source directory recording 
@@ -11,7 +10,7 @@
  If not all of the files in a bundle item are completed downloading, this may
  save another version of the item later if a better quality version is 
  downloaded. I recommend using the included hbd-runner.sh, which runs hbd 
- then this script to sort the comics.
+ then the picker scripts.
 
 """
 
@@ -61,20 +60,20 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
     bestPath = ""
     bestSize = 0
     bestExtension = ""
-    incompleteDownload = False
+    
+    if "comic" in itemName.lower():
+        guaranteed = True
 
     for fileName in os.listdir(source):
-        # check if any of the items in this 
-        incompleteDownload = fileName in hbdJSON
-
         extension = os.path.splitext(fileName)[1]
         filePath = source+"/"+fileName
+
         # if the item is available as a .cb* file, it's most likely a comic book
-        if ".cb" in extension:
+        if ".cb" in extension or "comic" in fileName.lower():
             guaranteed = True
         
         # I prefer cbz for compatibility, so those will be preferred when quality is equal
-        if extension in ".cbz.cbr.pdf":
+        if extension.lower() in ".cbz.cbr.pdf":
             fileSize = os.path.getsize(filePath)
             # If size is significantly greater, this is the new best file
             if (fileSize > (bestSize * 1.2)):
@@ -93,12 +92,11 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
                     bestExtension = extension
 
     bestTarget = target+"/"+itemName+bestExtension
-
-    if guaranteed and not incompleteDownload:
+    if guaranteed:
         copiedDict.update({itemName:bestPath})
         os.makedirs(target, exist_ok=True)
         shutil.copyfile(bestPath,bestTarget)
-        print(bestPath,"\n-->",bestTarget)
+        print(bestPath,"\n-->",bestTarget,"\n")
 
 
 if __name__ == "__main__":
