@@ -131,3 +131,6 @@ dmypy.json
 *.pdf
 .vscode/settings.json
 hbd-cookies.txt
+
+#miscellaneous
+.fuse*
