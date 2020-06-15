@@ -16,9 +16,10 @@ Requires xtream1101's humblebundle-downloader to be installed, which can be inst
 
 ```pip install humblebundle-downloader```
 
-#### Install
+### Install
 
 The repository can be cloned and run from their for the newest features, but I recommend using the well-tested versions that will be published to the releases page.
+To use hbd-runner, simply change the variables in the beginning of the hbd-runner.sh file to your own source/target directories, and add hbd-runner.sh to your /etc/crontab file. I recommend keeping the current version somewhere like /opt just to ensure it is not accidentally deleted/moved.
 
 ## Organizer Scripts
 
