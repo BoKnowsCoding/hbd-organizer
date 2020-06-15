@@ -30,6 +30,7 @@ A simple shell script to run humblebundle-downloader, then the various Python sc
 ### comic-picker.py
 Copies the best quality comic files from the download folder to a target folder, and renames them.
 This project started with this script in mind, to deploy the best quality comics from my hbd download folder to my curated comics folder when I buy a new comic bundle.
+
 This should also find any comics in non-comic bundles, so long as they are available in the bundle as CBR or CBZ files. Items are identified as comic book files if one of the available formats is CBZ or CBR, but PDFs are still checked for better quality.
 
 ### book-copier.py
