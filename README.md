@@ -41,3 +41,8 @@ To me, the convenience of having all available file types outweighs the very sma
 I don't know of a way to automatically import the books into Calibre, so the output folder will still need to be manually imported in Calibre if you use that, selecting to import directories and sub-directories and choosing to assume all e-book files in a single folder are the same book.
 
 I prefer to manually choose the books that go into my Calibre library anyway, to avoid some of the low quality filler books from bundles cluttering my library. This script helps facilitate that by giving a neat directory of properly named book folders to curate before importing, of which any can be deleted and won't be downloaded/copied again.
+
+### audio-extractor.py
+Picks the best files in the order of flac > wav > mp3. To my knowledge these are the only formats that Humble distributes in. I could only find one wav album in all of my bundles, which was also available in mp3 and flac, but I included it just in case it is the only lossless option in some bundle others have.
+
+I struggled to choose a preference for this one since I normally can't reliably tell the difference between mp3 at 256+kbps and lossless tracks. Ultimately, flac files are relatively small compared to most of my other kinds media, and to avoid having to evaluate if the bitrate of the mp3s was up to my standards, I decided to just prefer flac files in this script. And because wavs are so rare on Humble, and in keeping with the spirit of this project picking the best quality files, I am allowing it to pick wav over mp3, but not over flac. I may eventually add a preferred file type argument to this script for others' preferences though.
