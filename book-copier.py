@@ -47,8 +47,6 @@ def traverseFiles(source,target,hbdJSON,copiedJSON,itemName):
 
 
     for fileName in os.listdir(source):
-        # check if the file is not yet finished downloading from hbd
-
         extension = os.path.splitext(fileName)[1]
 
         # if the item is available as a .cb* file, it's most likely a comic book
