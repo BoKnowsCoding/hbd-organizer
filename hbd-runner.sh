@@ -14,15 +14,15 @@ MUSIC_DEPLOYMENT_PATH="/mnt/storage/media/audio/music"
 AUDIOBOOK_DEPLOYMENT_PATH="/mnt/storage/media/audio/audiobooks"
 
 # all output of the python scripts is output to this log, and refreshed each time hbd-runner.sh runs
-LOG_PATH="/mnt/storage/.logs"
+LOGFILE="/mnt/storage/.logs/hbd.log"
 COOKIE_FILE="./hbd-cookies.txt"
 
 # change to directory of this script
 cd "$(dirname "$0")"
 (
 flock -n 456 || exit 1
-    hbd download --cookie-file "$COOKIE_FILE" --library-path "$HBD_DOWNLOAD_PATH" --progress &> "$LOG_PATH/hbd.log"
-    python3 ./book-copier.py "$HBD_DOWNLOAD_PATH" "$BOOK_DEPLOYMENT_PATH" &>> "$LOG_PATH/hbd.log"
-    python3 ./comic-picker.py "$HBD_DOWNLOAD_PATH" "$COMIC_DEPLOYMENT_PATH" &>> "$LOG_PATH/hbd.log"
-    python3 ./audio-extractor.py "$HBD_DOWNLOAD_PATH" "$MUSIC_DEPLOYMENT_PATH" "$AUDIOBOOK_DEPLOYMENT_PATH" &>> "$LOG_PATH/hbd.log"
+    hbd download --cookie-file "$COOKIE_FILE" --library-path "$HBD_DOWNLOAD_PATH" --progress &> "$LOGFILE"
+    python3 ./book-copier.py "$HBD_DOWNLOAD_PATH" "$BOOK_DEPLOYMENT_PATH" &>> "$LOGFILE"
+    python3 ./comic-picker.py "$HBD_DOWNLOAD_PATH" "$COMIC_DEPLOYMENT_PATH" &>> "$LOGFILE"
+    python3 ./audio-extractor.py "$HBD_DOWNLOAD_PATH" "$MUSIC_DEPLOYMENT_PATH" "$AUDIOBOOK_DEPLOYMENT_PATH" &>> "$LOGFILE"
 ) 456>/var/lock/hbd-runner-lock
