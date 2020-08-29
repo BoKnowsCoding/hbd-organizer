@@ -4,12 +4,13 @@
 
 HBD_DOWNLOAD_PATH="/mnt/storage/archive/humble"
 
-# books will be directly in this "new" folder, to be imported into calibre manually
+# all formats of a book will be added to <BOOK_DEPLOYMENT_PATH>/<NAME OF BOOK>/<filename>, to be imported into calibre manually
 BOOK_DEPLOYMENT_PATH="/mnt/storage/media/books/new"
 
 # the comics directory will be under this one, along with manga, e.g. /books/comics and /books/manga
 COMIC_DEPLOYMENT_PATH="/mnt/storage/media/books"
 
+# songs and audiobook files will be organized in folders of their album name, like <MUSIC_DEPLOYMENT_PATH>/Bastion/01 The song.mp3
 MUSIC_DEPLOYMENT_PATH="/mnt/storage/media/audio/music"
 AUDIOBOOK_DEPLOYMENT_PATH="/mnt/storage/media/audio/audiobooks"
 

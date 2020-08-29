@@ -28,18 +28,19 @@ def traverseBundles(source,target,hbdJSON,copiedJSON):
             guaranteed = False
             targetName=bundleName
             
-            # in case a bundle has a comic available only in PDF, we'll know it's a comic, not a book.
-            if ("Manga" in bundleName) or ("Comic" in bundleName):
+            # If bundle has a comic available only in PDF, we'll know it's a comic if
+            # the bundle name contains "Comic" or "Manga".
+            # Sometimes manga has "Comics" in the bundle name, so we check for manga first
+            if "Manga" in bundleName:
                 guaranteed = True
-            
-            # separate manga and comics
-            # sometimes manga has "comics" in the bundle name, so we check for manga first
-            if ("Manga" in bundleName):
-                bundleTarget = bundleTarget + "/manga/Humble"
+                bundleTarget = mangaTarget
             else:
-                # assume this is a comic
-                # the target will only be made if it is a verified comic file
-                bundleTarget = bundleTarget + "/comics/Humble"
+                if "Comic" in bundleName:
+                    guaranteed = True
+                # Even if "Comic" isn't in the name, we still need to set a target directory,
+                # so we will assume whatever we find in this bundle is a comic from this point.
+                # The target folder will only be made if we find a verified comic file later.
+                bundleTarget = comicsTarget
             
             # trimming extraneous "Humble * Bundle - " at beginning of bundle name
             if "Bundle - " in bundleName:
