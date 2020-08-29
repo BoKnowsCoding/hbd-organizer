@@ -20,10 +20,9 @@ import shutil
 import json
 
 
-def traverseBundles(source,target,hbdJSON,copiedJSON):
+def traverseBundles(source,comicsTarget,mangaTarget,hbdJSON,copiedJSON):
     for bundleName in os.listdir(source):
         bundleSource=source+"/"+bundleName
-        bundleTarget = target
         if os.path.isdir(bundleSource):
             guaranteed = False
             targetName=bundleName
@@ -101,12 +100,13 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("\nInvalid parameters.\nUsage: ", sys.argv[0], " <path to source> <path to target>\n")
+    if len(sys.argv) != 4:
+        print("\nInvalid parameters.\nUsage: ", sys.argv[0], " <path to source> <path to comics target> <path to manga target>\n")
         exit(1)
     else:
         source = sys.argv[1]
-        target = sys.argv[2]
+        targetComics = sys.argv[2]
+        targetManga = sys.argv[3]
     
     with open(source+"/.cache.json") as hbdJsonFile:
         hbdDict = json.load(hbdJsonFile)
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     else:
         copiedDict = {}
 
-    traverseBundles(source,target,hbdDict,copiedDict)
+    traverseBundles(source,targetComics,targetManga,hbdDict,copiedDict)
 
     with open(source+"/.comic-picker.json","w") as copiedJsonFile:
         copiedJsonFile.write(json.dumps(copiedDict, sort_keys=True, indent=4))
