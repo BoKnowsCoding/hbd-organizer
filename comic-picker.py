@@ -62,7 +62,7 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
     bestSize = 0
     bestExtension = ""
     
-    if "comic" in itemName.lower():
+    if "comic" in itemName.lower() or ("graphic" in itemName.lower() and "novel" in itemName.lower()):
         guaranteed = True
 
     for fileName in os.listdir(source):
@@ -70,7 +70,7 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
         filePath = source+"/"+fileName
 
         # if the item is available as a .cb* file, it's most likely a comic book
-        if ".cb" in extension or "comic" in fileName.lower():
+        if ".cb" in extension or "comic" in fileName.lower()  or ("graphic" in fileName.lower() and "novel" in fileName.lower()):
             guaranteed = True
         
         # I prefer cbz for compatibility, so those will be preferred when quality is equal
