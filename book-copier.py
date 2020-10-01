@@ -51,7 +51,7 @@ def traverseFiles(source,target,hbdJSON,copiedJSON,itemName):
 
         # if the item is available as a .cb* file, it's most likely a comic book
         # if there is no extension, it's probably a binary
-        if extension is "":
+        if extension == "":
             break
         elif ".cb" in extension:
             isComic = True

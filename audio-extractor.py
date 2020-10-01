@@ -44,7 +44,7 @@ def filePicker(source,music,audiobooks,hbdJSON,copiedJSON,itemName,bundleName):
             elif "mp3" in fileName.lower() and "flac" not in bestType and "wav" not in bestType:
                 bestFile = fileName
                 bestType = "mp3"
-    if bestFile is not "":
+    if bestFile != "":
         if extractZip(source,music,audiobooks,itemName,bundleName,source+"/"+bestFile):
             copiedJSON.update({itemName:bestFile})
 

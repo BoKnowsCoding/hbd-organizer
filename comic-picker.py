@@ -82,11 +82,11 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
                 bestExtension = extension
             # If the size is comparable, then the preferred format is taken
             elif (fileSize > (bestSize * 0.9)) and (fileSize < (bestSize * 1.2)):
-                if extension is ".cbz":
+                if extension == ".cbz":
                     bestPath = filePath
                     bestSize = fileSize
                     bestExtension = extension
-                elif (extension is ".cbr") and (bestExtension is ".pdf"):
+                elif (extension == ".cbr") and (bestExtension == ".pdf"):
                     bestPath = filePath
                     bestSize = fileSize
                     bestExtension = extension
