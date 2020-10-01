@@ -92,7 +92,7 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
                     bestExtension = extension
 
     bestTarget = target+"/"+itemName+bestExtension
-    if guaranteed:
+    if guaranteed and bestPath != "":
         os.makedirs(target, exist_ok=True)
         shutil.copyfile(bestPath,bestTarget)
         copiedDict.update({itemName:bestPath})
