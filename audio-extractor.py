@@ -1,8 +1,9 @@
 """
- Extracts Audiobooks and Music from the download folder of humblebundle-downloader
+ Extracts Audiobooks and Music from the download folder of humblebundle-downloader.
  As far as I know, all audio files downloaded by hbd are in zip folders, so we'll look 
- for zip folders with either mp3 or flac in the filename.
-
+ for zip folders with flac, mp3, or wav in the filename.
+ If no format is in the title, we look for "audio" in the zip filename, which we will 
+ assume is mp3.
 
 """
 
@@ -41,7 +42,7 @@ def filePicker(source,music,audiobooks,hbdJSON,copiedJSON,itemName,bundleName):
             elif "wav" in fileName.lower() and "flac" not in bestType:
                 bestFile = fileName
                 bestType = "wav"
-            elif "mp3" in fileName.lower() and "flac" not in bestType and "wav" not in bestType:
+            elif ("mp3" in fileName.lower() or "audio" in fileName.lower()) and "flac" not in bestType and "wav" not in bestType:
                 bestFile = fileName
                 bestType = "mp3"
     if bestFile != "":
