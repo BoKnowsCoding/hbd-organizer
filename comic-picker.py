@@ -95,6 +95,7 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
                 bestExtension = extension
         # store epub filesize for comparison at the end
         elif extension.lower() in ".epub":
+            fileSize = os.path.getsize(filePath)
             epubPath = filePath
             epubSize = fileSize
     
