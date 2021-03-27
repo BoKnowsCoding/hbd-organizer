@@ -100,7 +100,7 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
     
     # Only accept epub if they're almost twice the size of the largest of cbz/cbr/pdf
     if epubSize > 1.8 * bestSize:
-        bestPath = epubPath:
+        bestPath = epubPath
         bestExtension = ".epub"
 
 
