@@ -60,6 +60,9 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
     bestPath = ""
     bestSize = 0
     bestExtension = ""
+
+    epubPath = ""
+    epubSize = 0
     
     if "comic" in itemName.lower() or ("graphic" in itemName.lower() and "novel" in itemName.lower()):
         guaranteed = True
@@ -69,27 +72,37 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
         filePath = source+"/"+fileName
 
         # if the item is available as a .cb* file, it's most likely a comic book
-        if ".cb" in extension or "comic" in fileName.lower()  or ("graphic" in fileName.lower() and "novel" in fileName.lower()):
+        if (".cb" in extension or "comic" in fileName.lower())  or ("graphic" in fileName.lower() and "novel" in fileName.lower()):
             guaranteed = True
         
-        # I prefer cbz for compatibility, so those will be preferred when quality is equal
+        # I prefer cbz for compatibility, and cbz/cbr over PDF, so those will be preferred when quality is equal
         if extension.lower() in ".cbz.cbr.pdf":
             fileSize = os.path.getsize(filePath)
-            # If size is significantly greater, this is the new best file
-            if (fileSize > (bestSize * 1.2)):
+            # If the size is comparable, then the preferred format is taken
+            if (fileSize > 0.9 * bestSize) and (fileSize < 1.2 * bestSize):
+                if extension in ".cbz":
+                    bestPath = filePath
+                    bestSize = fileSize
+                    bestExtension = extension
+                elif bestExtension in ".pdf":
+                    bestPath = filePath
+                    bestSize = fileSize
+                    bestExtension = extension
+            # If size is somewhat greater, take it as long as it's not an epub
+            if fileSize > 1.2 * bestSize:
                 bestPath = filePath
                 bestSize = fileSize
                 bestExtension = extension
-            # If the size is comparable, then the preferred format is taken
-            elif (fileSize > (bestSize * 0.9)) and (fileSize < (bestSize * 1.2)):
-                if extension == ".cbz":
-                    bestPath = filePath
-                    bestSize = fileSize
-                    bestExtension = extension
-                elif (extension == ".cbr") and (bestExtension == ".pdf"):
-                    bestPath = filePath
-                    bestSize = fileSize
-                    bestExtension = extension
+        # store epub filesize for comparison at the end
+        elif extension.lower() in ".epub":
+            epubPath = filePath
+            epubSize = fileSize
+    
+    # Only accept epub if they're almost twice the size of the largest of cbz/cbr/pdf
+    if epubSize > 1.8 * bestSize:
+        bestPath = epubPath:
+        bestExtension = ".epub"
+
 
     bestTarget = target+"/"+itemName+bestExtension
     if guaranteed and bestPath != "":
