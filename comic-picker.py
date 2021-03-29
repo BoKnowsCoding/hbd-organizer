@@ -99,11 +99,10 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
             epubPath = filePath
             epubSize = fileSize
     
-    # Only accept epub if they're almost twice the size of the largest of cbz/cbr/pdf
-    if epubSize > 1.8 * bestSize:
+    # Only accept epub if they're over twice the size of the largest of cbz/cbr/pdf
+    if epubSize > 2 * bestSize:
         bestPath = epubPath
         bestExtension = ".epub"
-
 
     bestTarget = target+"/"+itemName+bestExtension
     if guaranteed and bestPath != "":
