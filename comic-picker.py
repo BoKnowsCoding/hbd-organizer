@@ -18,6 +18,7 @@ import sys
 import os
 import shutil
 import json
+import argparse
 
 
 def traverseBundles(source,comicsTarget,mangaTarget,hbdJSON,copiedJSON):
@@ -29,7 +30,7 @@ def traverseBundles(source,comicsTarget,mangaTarget,hbdJSON,copiedJSON):
             
             # If bundle has a comic available only in PDF, we'll know it's a comic if
             # the bundle name contains "Comic" or "Manga".
-            # Sometimes manga has "Comics" in the bundle name, so we check for manga first
+            # Sometimes manga has "Comics" in the bundle name, so we check for manga first.
             if "Manga" in bundleName:
                 guaranteed = True
                 bundleTarget = mangaTarget
@@ -113,13 +114,18 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("\nInvalid parameters.\nUsage: ", sys.argv[0], " <path to source> <path to comics target> <path to manga target>\n")
-        exit(1)
-    else:
-        source = sys.argv[1]
-        targetComics = sys.argv[2]
-        targetManga = sys.argv[3]
+
+    parser = argparse.ArgumentParser(description="Copy the best quality comics from a humblebundle-downloader download directory.")
+    parser.add_argument("source", help="source humblebundle-downloader directory")
+    parser.add_argument("comics", help="target directory to deploy comics into.")
+    parser.add_argument("manga", help="target directory to deploy manga into.")
+    # parser.add_argument("-r", "--read-only", help="print operations to be run, but do not run them")
+    # parser.add_argument("-v", "--verbose", help="print operations to stdout while running")
+    args = parser.parse_args()
+
+    source = args.source
+    targetComics = args.comics
+    targetManga = args.manga
     
     with open(source+"/.cache.json") as hbdJsonFile:
         hbdDict = json.load(hbdJsonFile)
