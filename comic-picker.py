@@ -107,10 +107,12 @@ def filePicker(source,target,hbdJSON,copiedJSON,itemName,guaranteed):
 
     bestTarget = target+"/"+itemName+bestExtension
     if guaranteed and bestPath != "":
-        os.makedirs(target, exist_ok=True)
-        shutil.copyfile(bestPath,bestTarget)
-        copiedDict.update({itemName:bestPath})
-        print(bestPath+"\n-->"+bestTarget+"\n")
+        if not args.r:
+            os.makedirs(target, exist_ok=True)
+            shutil.copyfile(bestPath,bestTarget)
+            copiedDict.update({itemName:bestPath})
+        if args.r or args.v:
+            print(bestPath+"\n-->"+bestTarget+"\n")
 
 
 if __name__ == "__main__":
@@ -119,8 +121,8 @@ if __name__ == "__main__":
     parser.add_argument("source", help="source humblebundle-downloader directory")
     parser.add_argument("comics", help="target directory to deploy comics into.")
     parser.add_argument("manga", help="target directory to deploy manga into.")
-    # parser.add_argument("-r", "--read-only", help="print operations to be run, but do not run them")
-    # parser.add_argument("-v", "--verbose", help="print operations to stdout while running")
+    parser.add_argument("-r", "--read-only", action="store_true", help="print operations to be run, but do not run them")
+    parser.add_argument("-v", "--verbose", action="store_true", help="print operations to stdout while running")
     args = parser.parse_args()
 
     source = args.source
