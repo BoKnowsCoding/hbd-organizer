@@ -134,3 +134,4 @@ hbd-cookies.txt
 
 #miscellaneous
 .fuse*
+/.vs
