@@ -25,6 +25,6 @@ cd "$(dirname "$0")"
 flock -n 456 || exit 1
     hbd download --cookie-file "$COOKIE_FILE" --library-path "$HBD_DOWNLOAD_PATH" &> "$LOGFILE"
     python3 ./book-copier.py "$HBD_DOWNLOAD_PATH" "$BOOK_DEPLOYMENT_PATH" &>> "$LOGFILE"
-    python3 ./comic-picker.py "$HBD_DOWNLOAD_PATH" "$COMIC_DEPLOYMENT_PATH" "$MANGA_DEPLOYMENT_PATH" &>> "$LOGFILE"
+    python3 ./comic-picker.py -v "$HBD_DOWNLOAD_PATH" "$COMIC_DEPLOYMENT_PATH" "$MANGA_DEPLOYMENT_PATH" &>> "$LOGFILE"
     python3 ./audio-extractor.py "$HBD_DOWNLOAD_PATH" "$MUSIC_DEPLOYMENT_PATH" "$AUDIOBOOK_DEPLOYMENT_PATH" &>> "$LOGFILE"
 ) 456>/var/lock/hbd-runner-lock
