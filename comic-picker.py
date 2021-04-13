@@ -139,6 +139,7 @@ if __name__ == "__main__":
         copiedDict = {}
 
     traverseBundles(source,targetComics,targetManga,hbdDict,copiedDict)
-
-    with open(source+"/.comic-picker.json","w") as copiedJsonFile:
-        copiedJsonFile.write(json.dumps(copiedDict, sort_keys=True, indent=4))
+    
+    if not args.read_only:
+        with open(source+"/.comic-picker.json","w") as copiedJsonFile:
+            copiedJsonFile.write(json.dumps(copiedDict, sort_keys=True, indent=4))
