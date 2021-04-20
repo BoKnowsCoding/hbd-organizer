@@ -2,7 +2,7 @@
 
 # Replace these values as needed.
 
-HBD_DOWNLOAD_PATH="/mnt/storage/archive/humble"
+HBD_DOWNLOAD_PATH="/mnt/storage/archive/purchases/humble"
 
 # all formats of a book will be added to <BOOK_DEPLOYMENT_PATH>/<NAME OF BOOK>/<filename>, to be imported into calibre manually
 BOOK_DEPLOYMENT_PATH="/mnt/storage/media/books/new"
