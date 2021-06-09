@@ -5,7 +5,7 @@
 HBD_DOWNLOAD_PATH="/mnt/storage/archive/purchases/humble"
 
 # all formats of a book will be added to <BOOK_DEPLOYMENT_PATH>/<NAME OF BOOK>/<filename>, to be imported into calibre manually
-BOOK_DEPLOYMENT_PATH="/mnt/storage/media/books/new"
+BOOK_DEPLOYMENT_PATH="/mnt/storage/media/books/humble"
 
 # items will be organized by bundle within these dirctories, so you may want to deploy to separate "humble" folders
 COMIC_DEPLOYMENT_PATH="/mnt/storage/media/comics/.humble/comics"
